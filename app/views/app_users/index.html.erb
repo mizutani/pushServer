@@ -1,0 +1,31 @@
+<h1>Listing app_users</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>App</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Auth key</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @app_users.each do |app_user| %>
+  <tr>
+    <td><%= app_user.name %></td>
+    <td><%= app_user.app_id %></td>
+    <td><%= app_user.email %></td>
+    <td><%= app_user.password %></td>
+    <td><%= app_user.auth_key %></td>
+    <td><%= link_to 'Show', extend_app_user_path(app_user) %></td>
+    <td><%= link_to 'Edit', extend_edit_app_user_path(app_user) %></td>
+    <td><%= link_to 'Destroy', extend_app_user_path(app_user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New App user', new_app_user_path %>

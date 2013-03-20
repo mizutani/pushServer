@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  app_user_id: MyString
+  app_id: MyString
+  auth_key: MyString
+
+two:
+  app_user_id: MyString
+  app_id: MyString
+  auth_key: MyString

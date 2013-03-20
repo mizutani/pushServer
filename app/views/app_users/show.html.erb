@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @app_user.name %>
+</p>
+
+<p>
+  <b>App:</b>
+  <%= @app_user.app_id %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @app_user.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @app_user.password %>
+</p>
+
+<p>
+  <b>Auth key:</b>
+  <%= @app_user.auth_key %>
+</p>
+
+
+<%= link_to 'Edit', extend_edit_app_user_path(@app_user) %> |
+<%= link_to 'Back', app_users_path %>

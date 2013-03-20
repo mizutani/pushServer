@@ -1,4 +1,19 @@
+# -*- coding: utf-8 -*-
 PushServer::Application.routes.draw do
+  get "home/index"
+  devise_for :users
+    resources :gcms, :only => [:index, :create, :show] do
+        collection do
+            get 'register', :as => 'app_register'
+            resources :app_users, :path => ':app_name/user'
+            scope ':app_name' do
+                get 'notification' => 'gcm_notification#notification', :as => 'notification'
+                post 'notification' => 'gcm_notification#create'
+                get 'notification/show' => 'gcm_notification#show'
+                get '' => 'gcms#show'
+            end
+        end
+    end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +63,7 @@ PushServer::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

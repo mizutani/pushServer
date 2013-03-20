@@ -1,0 +1,31 @@
+<%= form_for @app, :as => 'gcm_app', :url => {:controller => 'gcms', :action => 'create'} do |f| %>
+<% if @app.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@app.errors.count, "error") %> prohibited this hoge from being saved:</h2>
+
+      <ul>
+      <% @app.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+  <table>
+    <% @app.attributes.keys.each do |key| %>
+    <tr>
+      <%= key %>
+    </tr>
+    <% end %>
+  </table>
+  <div class="actions">
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :auth_key %>
+  <%= f.text_field :auth_key %><br>
+  <%= f.label :connections %>
+  <%= f.text_field :connections %><br>
+  <%= f.submit %>
+  </div>
+<% end %>
