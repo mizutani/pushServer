@@ -1,5 +1,6 @@
 class AppUsersController < ApplicationController
-    before_filter :authenticate_user!, :set_app
+    before_filter :authenticate_user!, except: [:create]
+    before_filter :set_app
     before_filter :set_app_user , only: [:show, :edit, :update, :destroy]
   # GET /app_users
   # GET /app_users.json
@@ -66,7 +67,7 @@ class AppUsersController < ApplicationController
 
   private
     def set_app
-        @app = current_user.apps.find_by_name(params[:app_name])
+        @app = App::Gcm::App.find_by_name(params[:app_name])
     end
     def set_app_user
         @app_user = @app.app_users.find(params[:id]);
