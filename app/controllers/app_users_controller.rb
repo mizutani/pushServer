@@ -32,7 +32,7 @@ class AppUsersController < ApplicationController
     respond_to do |format|
       if @app_user.save
         format.html { redirect_to ({action:'show', id:@app_user.id}), notice: 'App user was successfully created.' }
-        format.json { render json: @app_user, status: :created, location: @app_user }
+        format.json { render json: @app_user.json, status: :created, location: @app_user }
       else
         format.html { render action: "new" }
         format.json { render json: @app_user.errors, status: :unprocessable_entity }
