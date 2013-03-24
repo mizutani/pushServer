@@ -10,7 +10,7 @@
     <% @apps.each do |app| %>
     <tr>
       <td>
-        <%= app.name %>
+        <%= link_to app.name, gcms_path + "/" + app.name%>
       </td>
       <td>
         <%= link_to 'notification', notification_gcms_path(:app_name => app.name) %>
@@ -22,3 +22,4 @@
     <% end %>
   </tbody>
 <%= link_to 'アプリ登録', app_register_gcms_path %>
+<%= link_to 'HOME', '/' %>
