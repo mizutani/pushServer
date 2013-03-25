@@ -1,6 +1,6 @@
 class AppUsersController < ApplicationController
     before_filter :authenticate_user!, except: [:create]
-    before_filter :set_app
+    before_filter :set_app, except: [:create]
     before_filter :set_app_user , only: [:show, :edit, :update, :destroy]
   # GET /app_users
   # GET /app_users.json
@@ -26,6 +26,7 @@ class AppUsersController < ApplicationController
   # POST /app_users
   # POST /app_users.json
   def create
+    @app = App::Gcm::App.find_by_name(params[:app_name])
     @app_user = @app.app_users.build(app_params)
     @app_user.app_id = @app.id
     @app_user.app_name = @app.name
@@ -67,7 +68,7 @@ class AppUsersController < ApplicationController
 
   private
     def set_app
-        @app = App::Gcm::App.find_by_name(params[:app_name])
+        @app = current_user.apps.find_by_name(params[:app_name])
     end
     def set_app_user
         @app_user = @app.app_users.find(params[:id]);

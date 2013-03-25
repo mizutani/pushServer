@@ -1,5 +1,5 @@
 class GcmNotificationController < ApplicationController
-    before_filter :authenticate_user!, only: [:notification]
+    before_filter :authenticate_user!
     before_filter :set_app
 
     def notification
@@ -39,10 +39,12 @@ class GcmNotificationController < ApplicationController
     private
 
     def set_app
-        @app = App::Gcm::App.find_by_name(params[:app_name])
+        @app = current_user.apps.find_by_name(params[:app_name])
     end
 
     def notification_params
-        params[:notification]
+        data = params[:rapns_gcm_notification][:data]
+        params[:rapns_gcm_notification][:data] = {:message=>data}
+        params[:rapns_gcm_notification]
     end
 end
