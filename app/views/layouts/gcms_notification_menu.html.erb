@@ -1,0 +1,17 @@
+<% content_for :content do %>
+<div class="span3">
+  <div class="well sidebar-nav">
+    <ul class="nav nav-list">
+      <li class="nav-header">Sidebar</li>
+      <li><%= link_to "全通知", notification_gcms_path(:app_name => @app.name) %></li>
+      <li><%= link_to "個人通知", '/sample'  %></li>
+      <li><%= link_to "通知履歴", notification_history_gcms_path  %></li>
+    </ul>
+  </div><!--/.well -->
+</div><!--/span-->
+<div class="span9">
+  <%= bootstrap_flash %>
+  <%= yield %>
+</div>
+<% end %>
+<%= render :template => 'layouts/application' %>
