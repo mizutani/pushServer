@@ -1,2 +1,16 @@
-<p id="notice"><%= notice %></p>
-<%= link_to 'Back', notification_gcms_path %>
+<%- model_class = Rapns::Gcm::Notification -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:id) %>:</strong></dt>
+  <dd><%= @notification.id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:data) %>:</strong></dt>
+  <dd><%= @notification.data %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              notification_gcms_path, :class => 'btn'  %>
+</div>

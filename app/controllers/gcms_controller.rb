@@ -1,8 +1,8 @@
 require "app"
 class GcmsController < ApplicationController
-before_filter :authenticate_user!
+    before_filter :authenticate_user!
     before_filter :set_app, only: [:show]
-
+    layout 'gcms_menu'
     # GET /gcms/index
     def index
         @apps = current_user.apps

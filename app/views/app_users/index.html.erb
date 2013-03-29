@@ -1,32 +1,42 @@
-<h1>Listing app_users</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>App</th>
-    <th>Email</th>
-    <th>Password</th>
-    <th>Auth key</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @app_users.each do |app_user| %>
-  <tr>
-    <td><%= app_user.name %></td>
-    <td><%= app_user.app_id %></td>
-    <td><%= app_user.email %></td>
-    <td><%= app_user.password %></td>
-    <td><%= app_user.auth_key %></td>
-    <td><%= link_to 'Show', extend_app_user_path(app_user) %></td>
-    <td><%= link_to 'Edit', extend_edit_app_user_path(app_user) %></td>
-    <td><%= link_to 'Destroy', extend_app_user_path(app_user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = AppUser -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th class="maxWidth30 ellipsis"><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:app_id) %></th>
+      <th><%= model_class.human_attribute_name(:app_name) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:password) %></th>
+      <th><%= model_class.human_attribute_name(:auth_key) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @app_users.each do |app_user| %>
+      <tr>
+        <td><%= link_to app_user.id, extend_app_user_path(app_user) %></td>
+        <td class="maxWidth30 ellipsis"><%= app_user.name %></td>
+        <td><%= app_user.app_id %></td>
+        <td><%= app_user.app_name %></td>
+        <td><%= app_user.email %></td>
+        <td><%= app_user.password %></td>
+        <td><%= app_user.auth_key %></td>
+        <td><%=l app_user.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      extend_edit_app_user_path(app_user), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      extend_app_user_path(app_user),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New App user', new_app_user_path %>
-<%= link_to 'back', gcms_path %>

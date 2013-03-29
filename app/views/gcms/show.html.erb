@@ -1,6 +1,20 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = App::Gcm::App -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:id) %>:</strong></dt>
+  <dd><%= @app.id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @app.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:connections) %>:</strong></dt>
+  <dd><%= @app.connections %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:auth_key) %>:</strong></dt>
+  <dd><%= @app.auth_key %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:created_at) %>:</strong></dt>
+  <dd><%= @app.created_at %></dd>
+</dl>
 <% @app.attributes.each do |key, value| %>
 <%= key %> = <%= value %><br>
 <% end %>
-
-<%= link_to 'Back', gcms_path %>

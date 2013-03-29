@@ -11,19 +11,20 @@
     </div>
   <% end %>
 
- 
-  <table>
-    <% @notification.attributes.keys.each do |key| %>
-    <tr>
-     <td> <%= key %></td>
-    </tr>
-    <% end %>
-  </table>
-  <div class="field">
-    <%= f.label :data %><br />
-    <%= f.text_field :data %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <%= @app.name %>
   </div>
-  <div class="actions">
-  <%= f.submit %>
+  <div class="control-group">
+    <%= f.label :data, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :data, :class => 'text_area' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                gcms_path, :class => 'btn' %>
   </div>
 <% end %>

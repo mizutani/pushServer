@@ -2,6 +2,7 @@ class AppUsersController < ApplicationController
     before_filter :authenticate_user!, except: [:create]
     before_filter :set_app, except: [:create]
     before_filter :set_app_user , only: [:show, :edit, :update, :destroy]
+    layout 'app_user_menu'
   # GET /app_users
   # GET /app_users.json
   def index

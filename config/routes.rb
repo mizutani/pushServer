@@ -9,7 +9,8 @@ PushServer::Application.routes.draw do
             scope ':app_name' do
                 get 'notification' => 'gcm_notification#notification', :as => 'notification'
                 post 'notification' => 'gcm_notification#create'
-                get 'notification/show' => 'gcm_notification#show'
+                get 'notification/show/:id' => 'gcm_notification#show'
+                get 'notification/history' => 'gcm_notification#history', :as => 'notification_history'
                 get '' => 'gcms#show'
             end
         end

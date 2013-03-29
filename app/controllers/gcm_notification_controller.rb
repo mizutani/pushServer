@@ -1,7 +1,7 @@
 class GcmNotificationController < ApplicationController
     before_filter :authenticate_user!
     before_filter :set_app
-
+    layout 'gcms_notification_menu'
     def notification
         @notification = Rapns::Gcm::Notification.new
     end
@@ -12,7 +12,7 @@ class GcmNotificationController < ApplicationController
         @notification.registration_ids = @app.app_users.select(:auth_key).map(&:auth_key)
         respond_to do |format|
             if @notification.save
-                 format.html{redirect_to ({:action => 'show', :app_name => @app.name}), notice: 'Notification was successfully created.'}
+                 format.html{redirect_to ({:action => 'show', :app_name => @app.name, id:@notification.id}), notice: 'Notification was successfully created.'}
                 format.json{render action: 'show', status: :created, location: @notification}
             else
                  format.html{render action: 'notification'}
@@ -22,8 +22,13 @@ class GcmNotificationController < ApplicationController
     end
     
     def show
+        @notification = Rapns::Gcm::Notification.find(params[:id])
     end
     
+    def history
+        @notifications = Rapns::Gcm::Notification.where(:app_id => @app.id)
+    end
+
     def relayPost
         @notification = Rapns::Gcm::Notification.new(notification_params)
         @notification.app = @app
