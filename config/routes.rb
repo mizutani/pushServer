@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 PushServer::Application.routes.draw do
+  devise_for :admins
+  mount RailsAdmin::Engine => '/app_admin', :as => 'rails_admin'
+
   get "home/index"
   devise_for :users
     resources :gcms, :only => [:index, :create, :show] do
