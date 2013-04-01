@@ -5,6 +5,8 @@ PushServer::Application.routes.draw do
 
   get "home/index"
   devise_for :users
+    get 'docs' => 'docs#index'
+    get 'docs/:name' => 'docs#show', :as => 'docs_show'
     resources :gcms, :only => [:index, :create, :show] do
         collection do
             get 'register', :as => 'app_register'

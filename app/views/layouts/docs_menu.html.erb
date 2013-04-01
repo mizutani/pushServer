@@ -1,0 +1,18 @@
+<% content_for :content do %>
+<div class="span3">
+  <div class="well sidebar-nav">
+    <ul class="nav nav-list">
+      <li class="nav-header">Sidebar</li>
+      <li><%= link_to "Top", docs_path  %></li>
+      <% @menu.each do |doc| %>
+      <li><%= link_to doc.name, docs_show_path(:name => doc.name)  %></li>
+      <% end %>
+    </ul>
+  </div><!--/.well -->
+</div><!--/span-->
+<div class="span9">
+  <%= bootstrap_flash %>
+  <%= yield %>
+</div>
+<% end %>
+<%= render :template => 'layouts/application' %>

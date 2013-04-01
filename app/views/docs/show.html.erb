@@ -1,0 +1,36 @@
+<% if @doc %>
+<h1><%= @doc.name %></h1>
+<div id="" class="">
+ 説明<p><%= @doc.description %></p>
+</div>
+<div id="" class="">
+URL<p><%= @doc.url %></p>
+</div> 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>パラメータ名</td>
+      <td>値</td>
+    </tr>
+  <thead>
+    <tbody>
+      <% @doc.parameter.each do |key, value|%>
+      <tr>
+        <td><%= key %></td>
+        <td><%= value %></td>
+      </tr>
+      <% end %>
+    <tbody>
+</table>
+<code>
+  response = <%= @doc.response %>
+</code> 
+<div id="" class="">
+<p>  tag = <%= @doc.tag %></p>
+</div> 
+<div id="" class="">
+注意書き？ <p><%= @doc.message %></p>
+</div> 
+
+
+<% end %>

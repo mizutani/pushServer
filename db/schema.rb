@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130331094224) do
+ActiveRecord::Schema.define(:version => 20130331124226) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(:version => 20130331094224) do
     t.string   "auth_key"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "docs", :force => true do |t|
+    t.string   "name"
+    t.string   "tag"
+    t.string   "url"
+    t.text     "parameter"
+    t.text     "description"
+    t.text     "message"
+    t.text     "response"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "gcm_app_users", :force => true do |t|
